@@ -4,9 +4,10 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {LinearProgress} from 'react-native-elements';
 
-import {colors} from '../../../Utils/colors';
 import {formatTime, playRate} from '../../../Utils/formatTime';
 import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
+import Styles from './styles';
+import {colors} from '../../../Utils/colors';
 
 interface Props {
   navigation: any;
@@ -16,7 +17,6 @@ interface Props {
 const PlayScreen: React.FC<Props> = ({navigation, presentation}) => {
   const {
     currentPlayData: {data},
-    currentPlayData,
   } = useSelector((state: any) => state.currentPlayBack);
 
   React.useLayoutEffect(() => {
@@ -37,14 +37,8 @@ const PlayScreen: React.FC<Props> = ({navigation, presentation}) => {
   }
 
   return (
-    <ScrollView
-      style={{
-        backgroundColor: colors.primary,
-        flex: 1,
-        padding: 20,
-        width: '100%',
-      }}>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+    <ScrollView style={Styles.scroll}>
+      <View style={Styles.main}>
         <FontAwesome
           name="chevron-down"
           color={colors.white}
@@ -54,21 +48,9 @@ const PlayScreen: React.FC<Props> = ({navigation, presentation}) => {
         <Text style={{color: '#fff'}}>PLAYING SONG</Text>
         <FontAwesome name="ellipsis-v" color={colors.white} size={20} />
       </View>
-      <View style={{marginTop: 20, width: '95%', alignSelf: 'center'}}>
-        <Image
-          source={{uri: image}}
-          style={{width: '100%', height: 320, alignSelf: 'center'}}
-          resizeMode="cover"
-        />
-        <Text
-          style={{
-            color: colors.white,
-            fontSize: 20,
-            fontWeight: 'bold',
-            marginTop: 10,
-          }}>
-          {trackName}
-        </Text>
+      <View style={Styles.imageContainer}>
+        <Image source={{uri: image}} style={Styles.image} resizeMode="cover" />
+        <Text style={Styles.title}>{trackName}</Text>
         <Text style={{color: colors.grey}}>{artist}</Text>
         <LinearProgress
           color="white"
@@ -87,36 +69,16 @@ const PlayScreen: React.FC<Props> = ({navigation, presentation}) => {
           <Text style={{color: '#fff'}}>{formatTime(duration)}</Text>
         </View>
 
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginVertical: 25,
-            alignItems: 'center',
-          }}>
+        <View style={Styles.icons}>
           <Ionicons name="heart-outline" color="#fff" size={30} />
           <FontAwesome name="step-backward" color="grey" size={25} />
-          <TouchableOpacity
-            style={{
-              borderRadius: 70,
-              width: 70,
-              height: 70,
-              backgroundColor: '#fff',
-              alignItems: 'center',
-              alignSelf: 'center',
-              justifyContent: 'center',
-            }}>
+          <TouchableOpacity style={Styles.playContainer}>
             <FontAwesome name="play" color="#000" size={25} />
           </TouchableOpacity>
           <FontAwesome name="step-forward" color="#fff" size={25} />
           <Ionicons name="remove-circle-outline" color="#fff" size={30} />
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginTop: 40,
-          }}>
+        <View style={Styles.otherIcons}>
           <Ionicons name="phone-portrait-outline" color="#fff" size={25} />
           <FontAwesome name="share-alt" color="#fff" size={25} />
         </View>

@@ -14,6 +14,7 @@ import {
 import {Carousel, SignOut} from '../../../components';
 import Player from '../PlayerModule';
 import Greeting from '../../../Utils/greeting';
+import Styles from './styles';
 
 interface Props {
   navigation: any;
@@ -54,23 +55,17 @@ const Home: React.FC<Props> = ({navigation}) => {
 
   return (
     <>
-      <ScrollView
-        style={{backgroundColor: 'rgb(18,18,18)', flex: 1}}
-        contentContainerStyle={{padding: 10}}>
+      <ScrollView style={Styles.main} contentContainerStyle={{padding: 10}}>
         <Greeting />
         {trackData.data && (
           <>
-            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
-              Recently Played
-            </Text>
+            <Text style={Styles.title}>Recently Played</Text>
             <Carousel items={trackData && trackData.data} type="recent" />
           </>
         )}
         {popularData.data && (
           <>
-            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
-              Popular new releases
-            </Text>
+            <Text style={Styles.title}>Popular new releases</Text>
             <Carousel items={popularData && popularData.data} type="popular" />
           </>
         )}

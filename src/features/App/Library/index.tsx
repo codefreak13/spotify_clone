@@ -8,6 +8,7 @@ import shortid from 'shortid';
 import {SignOut} from '../../../components';
 import Player from '../PlayerModule';
 import {getTrackList, getsingleTrack} from '../../../reducers';
+import Styles from './styles';
 
 interface Props {
   navigation: any;
@@ -46,65 +47,26 @@ const Library: React.FC<Props> = ({navigation}) => {
   };
 
   return (
-    <View
-      style={{
-        backgroundColor: 'rgb(18,18,18)',
-        flex: 1,
-        padding: 15,
-        paddingTop: 30,
-        width: '100%',
-      }}>
+    <View style={Styles.main}>
       <FlatList
         renderItem={_renderItem}
         data={data}
         keyExtractor={() => shortid.generate()}
         ListHeaderComponent={
           <>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                width: '100%',
-                justifyContent: 'space-between',
-              }}>
+            <View style={Styles.body}>
               <View style={{flexDirection: 'row'}}>
                 <Avatar rounded title="A" />
-                <Text
-                  style={{
-                    fontWeight: 'bold',
-                    fontSize: 30,
-                    color: 'white',
-                    marginLeft: 10,
-                  }}>
-                  Your Library
-                </Text>
+                <Text style={Styles.title}>Your Library</Text>
               </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  width: '25%',
-                  justifyContent: 'space-between',
-                }}>
+              <View style={Styles.icons}>
                 <Ionicons name="search-outline" color="#fff" size={25} />
                 <Ionicons name="add-outline" color="#fff" size={25} />
               </View>
             </View>
 
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                width: '100%',
-                justifyContent: 'space-between',
-                marginTop: 20,
-              }}>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  width: '35%',
-                  justifyContent: 'space-between',
-                }}>
+            <View style={Styles.card}>
+              <View style={Styles.recent}>
                 <Ionicons name="swap-vertical-outline" color="#fff" size={25} />
                 <Text style={{color: 'white'}}>Recently Played</Text>
               </View>
@@ -133,14 +95,7 @@ const Card = ({
   onPress?: () => void;
 }) => {
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={{
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 15,
-      }}>
+    <TouchableOpacity onPress={onPress} style={Styles.cardContainer}>
       <Image
         source={{uri: image}}
         style={{width: 70, height: 70, marginRight: 10}}
