@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
-import {View, Text, ScrollView} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import React, { useEffect } from 'react';
+import { Text, ScrollView } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {RootState} from '../../../store';
+import { RootState } from '../../../store';
 import {
   getCurentPlayBack,
   getPopularPlaylists,
@@ -11,7 +11,7 @@ import {
   getSavedAlbums,
   onRefresh,
 } from '../../../reducers';
-import {Carousel, SignOut} from '../../../components';
+import { Carousel, SignOut } from '../../../components';
 import Player from '../PlayerModule';
 import Greeting from '../../../Utils/greeting';
 import Styles from './styles';
@@ -20,10 +20,10 @@ interface Props {
   navigation: any;
 }
 
-const Home: React.FC<Props> = ({navigation}) => {
+const Home: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
-  const {trackData} = useSelector((state: RootState) => state.tracks);
-  const {popularData} = useSelector((state: RootState) => state.popular);
+  const { trackData } = useSelector((state: RootState) => state.tracks);
+  const { popularData } = useSelector((state: RootState) => state.popular);
 
   useEffect(() => {
     const bootstrapAsync = async () => {
@@ -55,7 +55,7 @@ const Home: React.FC<Props> = ({navigation}) => {
 
   return (
     <>
-      <ScrollView style={Styles.main} contentContainerStyle={{padding: 10}}>
+      <ScrollView style={Styles.main} contentContainerStyle={{ padding: 10 }}>
         <Greeting />
         {trackData.data && (
           <>

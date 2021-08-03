@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {Image} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Home from './Home';
@@ -30,8 +29,8 @@ function BottomNavigator() {
           paddingBottom: 10,
         },
       }}
-      screenOptions={({route}) => ({
-        tabBarIcon: ({focused, color, size}) => {
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
           let iconName = '';
           if (route.name === 'Home') {
             iconName = focused ? 'home-outline' : 'home-outline';

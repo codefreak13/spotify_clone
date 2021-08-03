@@ -1,14 +1,14 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {useSelector, useDispatch} from 'react-redux';
-import {RootState, AppDispatch} from '../store';
-import {persist} from '../reducers';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../store';
+import { persist } from '../reducers';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {ThemeProvider} from 'react-native-elements';
+import { ThemeProvider } from 'react-native-elements';
 
-import {Loader} from '../components';
+import { Loader } from '../components';
 import AuthNavigator from '../features/Auth';
 import {
   Home,
@@ -32,16 +32,9 @@ const MainStack = createStackNavigator<MainStackParamList>();
 
 export default function App() {
   const {
-    loginData: {token},
-    loginData,
-  } = useSelector((state: RootState) => state.auth);
-  const {trackData} = useSelector((state: RootState) => state.tracks);
-  const {trackList} = useSelector((state: any) => state.trackList);
-  const {currentPlayData} = useSelector(
-    (state: RootState) => state.currentPlayBack,
-  );
-  const {savedAlbums} = useSelector((state: RootState) => state.albums);
-  const {popularData} = useSelector((state: RootState) => state.popular);
+    auth: { loginData: { token },
+      loginData }, tracks: { trackData }, trackList: { trackList }, currentPlayBack: { currentPlayData }, albums: { savedAlbums }, popular: { popularData }
+  } = useSelector((state: RootState) => state)
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -52,7 +45,7 @@ export default function App() {
       try {
         userToken = await AsyncStorage.getItem('token');
         userToken && dispatch(persist());
-      } catch (e) {}
+      } catch (e) { }
     };
     bootstrapAsync();
   }, []);
@@ -75,8 +68,8 @@ export default function App() {
             initialRouteName="BottomNavigator"
             headerMode="none"
             screenOptions={{
-              headerStyle: {elevation: 0},
-              cardStyle: {backgroundColor: 'white'},
+              headerStyle: { elevation: 0 },
+              cardStyle: { backgroundColor: 'white' },
             }}>
             <MainStack.Screen
               name="BottomNavigator"
